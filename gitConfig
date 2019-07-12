@@ -1,0 +1,64 @@
+[user]
+	name = Joey Cozza
+	email = joeycozza@gmail.com
+[core]
+	excludesfile = /Users/joeycozza/.gitignore_global
+	autocrlf = input
+[http]
+	sslVerify = false
+[push]
+	default = simple
+[alias]
+	co = checkout
+	cob = checkout -b
+	md = merge develop
+	cm = commit -a -m
+	s = status
+	b = branch
+	graph = log --graph -100 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+	precommit = diff --cached --diff-algorithm=minimal -w
+	cod = checkout develop
+  com = checkout master
+  rmi = rebase -i master
+	uncommit = reset --soft HEAD~
+  open = !open $(git config remote.origin.url)
+  rebaseMaster = !git checkout master && git pull origin master && git checkout @{-1} && git rebase -i master
+[url "https://"]
+	insteadOf = git://
+[branch]
+	autosetuprebase = always
+[url "https://github.com/"]
+	insteadOf = git://github.com/
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 227
+	frag = magenta bold
+	commit = 227 bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[merge]
+   tool = intellij
+[mergetool "intellij"]
+   cmd = /Applications/IntelliJ\\ IDEA\\ CE.app/Contents/MacOS/idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+   trustExitCode = true
+[diff]
+   tool = intellij
+[difftool "intellij"]
+   cmd = /Applications/IntelliJ\\ IDEA\\ CE.app/Contents/MacOS/idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+   prompt = false
+[pager]
+	branch = false
+  log = less --tabs=4 -RFX --pattern 'Joey'
+  diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

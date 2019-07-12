@@ -1,0 +1,19 @@
+snippet snip "help for creating a new snippet" i
+snippet ${1:shortcut} "${2:description}" ${3:flags}
+${VISUAL}
+${0}endsnippet
+endsnippet
+snippet todo "todo comment"
+//TODO: JOEY 
+endsnippet
+snippet if "if" 
+if ($1) {
+  ${VISUAL}$0
+}
+endsnippet
+snippet ife "if" 
+if ($1) {
+  ${VISUAL}$0
+} else {
+}
+endsnippet
